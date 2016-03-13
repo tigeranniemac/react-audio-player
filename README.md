@@ -1,4 +1,4 @@
-# react-audio-player
+# React Audio Player
 This is a light React wrapper around the HTML5 audio tag.  It provides the ability to manipulate the player and listen to events through a nice React interface.
 
 ## Example
@@ -11,7 +11,7 @@ Indicates how often to call the `onListened` prop during playback, in millisecon
 #### onAbort {Function}
 Called when unloading the audio player, like when switching to a different src file. Passed the event.
 
-## onCanPlay {Function}
+#### onCanPlay {Function}
 Called when enough of the file has been downloaded to be able to start playing.  Passed the event.
 
 #### onEnded {Function}
