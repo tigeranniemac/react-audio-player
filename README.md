@@ -1,7 +1,16 @@
 # React Audio Player
 This is a light React wrapper around the HTML5 audio tag.  It provides the ability to manipulate the player and listen to events through a nice React interface.
 
-## Example
+## Installation
+
+    npm install --save react-audio-player
+
+## Usage
+
+    <ReactAudioPlayer
+      src="my_audio_file.ogg"
+      autoplay="true"
+    />
 
 ## API
 
