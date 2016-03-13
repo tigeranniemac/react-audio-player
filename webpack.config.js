@@ -1,6 +1,15 @@
 module.exports = {
   entry: './src/index.jsx',
-  output: { path: './dist', filename: 'bundle.js' },
+  output: {
+    path: './dist',
+    filename: 'bundle.js',
+    libraryTarget: 'commonjs2',
+  },
+  externals: [
+    // Every non-relative module is external
+    // abc -> require("abc")
+    /^[a-z\-0-9]+$/,
+  ],
   module: {
     loaders: [
       {

@@ -5,7 +5,7 @@ This is a light React wrapper around the HTML5 audio tag.  It provides the abili
 
 ## API
 
-#### listenInterval {Function} [10000]
+#### listenInterval {Number} [10000]
 Indicates how often to call the `onListened` prop during playback, in milliseconds.
 
 #### onAbort {Function}
@@ -31,3 +31,6 @@ Called when the user taps play.  Passed the event.
 
 #### onSeeked {Function}
 Called when the user drags the time indicator to a new time. Passed the event.
+
+#### preload {String}
+Indicates whether the browser should preload the media. See the [audio tag documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) for details.

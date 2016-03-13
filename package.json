@@ -5,7 +5,7 @@
   "main": "dist/bundle.js",
   "scripts": {
     "test": "karma start",
-    "build": "webpack"
+    "build": "webpack -p"
   },
   "repository": {
     "type": "git",
