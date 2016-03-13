@@ -11,8 +11,14 @@ Indicates how often to call the `onListened` prop during playback, in millisecon
 #### onAbort {Function}
 Called when unloading the audio player, like when switching to a different src file. Passed `audio.currentTime`.
 
+## onCanPlay {Function}
+Called when enough of the file has been downloaded to be able to start playing.
+
 #### onEnded {Function}
 Called when playback has finished to the end of the file. Passed `audio.currentTime`.
+
+#### onError {Function}
+Called when the audio tag encounters an error.
 
 #### onListened {Function}
 Called every `listenInterval` milliseconds during playback.  Passed `audio.currentTime`.

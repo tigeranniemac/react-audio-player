@@ -1,6 +1,6 @@
 module.exports = function(config) {
   config.set({
-    browsers: ['PhantomJS'],
+    browsers: ['Chrome'],
     files: [
       './spec/*_spec.js',
     ],
@@ -18,6 +18,10 @@ module.exports = function(config) {
             query: {
               presets: ['react', 'es2015']
             }
+          },
+          {
+            test: /\.ogg/,
+            loader: 'file'
           }
         ],
         query: {

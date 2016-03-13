@@ -6,10 +6,18 @@ const ReactAudioPlayer = React.createClass({
   componentDidMount() {
     const audio = this.refs.audio;
 
+    audio.addEventListener('error', (e) => {
+      this.props.onError();
+    });
+
+    // When enough of the file has downloaded to start playing
+    audio.addEventListener('canplay', (e) => {
+      this.props.onCanPlay();
+    });
+
     // When audio play starts
     audio.addEventListener('play', (e) => {
       this.setListenTrack();
-      this.props.playerActions.play(audio.currentTime, this.props.episodeId);
       this.props.onPlay(audio.currentTime);
     });
 
@@ -51,7 +59,8 @@ const ReactAudioPlayer = React.createClass({
     return (
       <audio
         className="react-audio-player"
-        src={this.props.media}
+        src={this.props.src}
+        autoPlay={this.props.autoPlay}
         preload="auto"
         controls
         autoPlay="true"
