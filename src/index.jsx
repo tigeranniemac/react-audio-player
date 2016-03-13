@@ -61,6 +61,10 @@ const ReactAudioPlayer = React.createClass({
   },
 
   render() {
+    const incompatibilityMessage = this.props.children || (
+      <p>Your browser does not support the <code>audio</code> element.</p>
+    );
+
     return (
       <audio
         className="react-audio-player"
@@ -72,7 +76,7 @@ const ReactAudioPlayer = React.createClass({
         ref="audio"
         onPlay={this.onPlay}
       >
-        <p>Your browser does not support the <code>audio</code> element.</p>
+        {incompatibilityMessage}
       </audio>
     );
   },
