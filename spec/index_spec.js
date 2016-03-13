@@ -17,17 +17,33 @@ describe('ReactAudioPlayer', function() {
 
   describe('when can play', function() {
     it('calls onCanPlay', function(done) {
-      function onCanPlay() {
-        expect(true).toBe(true);
+      var onCanPlay = jasmine.createSpy('onCanPlay').and.callFake(function() {
+        expect(onCanPlay).toHaveBeenCalled();
         done();
-      }
+      });
 
       ReactTestUtils.renderIntoDocument(
         <ReactAudioPlayer
           src={song}
           autoPlay={true}
           onCanPlay={onCanPlay}
-          onError={onError}
+        />
+      );
+    });
+  });
+
+  describe('when can play the entire file', function() {
+    it('calls onCanPlayThrough', function(done) {
+      var onCanPlayThrough = jasmine.createSpy('onCanPlayThrough').and.callFake(function() {
+        expect(onCanPlayThrough).toHaveBeenCalled();
+        done();
+      });
+
+      ReactTestUtils.renderIntoDocument(
+        <ReactAudioPlayer
+          src={song}
+          autoPlay={true}
+          onCanPlayThrough={onCanPlayThrough}
         />
       );
     });

@@ -1,48 +1,53 @@
 import React from 'react';
 
-const DEFAULT_LISTEN_EVENT_INTERVAL = 10000;
+const DEFAULT_LISTEN_INTERVAL = 10000;
 
 const ReactAudioPlayer = React.createClass({
   componentDidMount() {
     const audio = this.refs.audio;
 
     audio.addEventListener('error', (e) => {
-      this.props.onError();
+      this.props.onError && this.props.onError(e);
     });
 
     // When enough of the file has downloaded to start playing
     audio.addEventListener('canplay', (e) => {
-      this.props.onCanPlay();
+      this.props.onCanPlay && this.props.onCanPlay(e);
+    });
+
+    // When enough of the file has downloaded to play the entire file
+    audio.addEventListener('canplaythrough', (e) => {
+      this.props.onCanPlayThrough && this.props.onCanPlayThrough(e);
     });
 
     // When audio play starts
     audio.addEventListener('play', (e) => {
       this.setListenTrack();
-      this.props.onPlay(audio.currentTime);
+      this.props.onPlay && this.props.onPlay(e);
     });
 
     // When unloading the audio player (switching to another src)
     audio.addEventListener('abort', (e) => {
       this.clearListenTrack();
-      this.props.onAbort(audio.currentTime);
+      this.props.onAbort && this.props.onAbort(e);
     });
 
     // When the file has finished playing to the end
     audio.addEventListener('ended', (e) => {
       this.clearListenTrack();
-      this.props.onEnd(audio.currentTime);
+      this.props.onEnd && this.props.onEnd(e);
     });
 
     // When the user pauses playback
     audio.addEventListener('pause', (e) => {
       this.clearListenTrack();
-      this.props.onPause(audio.currentTime);
+      this.props.onPause && this.props.onPause(e);
     });
 
     // When the user drags the time indicator to a new time
     audio.addEventListener('seeked', (e) => {
       this.clearListenTrack();
-      this.props.onSeeked(audio.currentTime);
+      this.props.onSeeked && this.props.onSeeked(e);
     });
   },
 
