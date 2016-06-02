@@ -96,7 +96,10 @@ const ReactAudioPlayer = React.createClass({
    * Clear the onListen interval
    */
   clearListenTrack() {
-    clearInterval(this.listenTracker);
+    if (this.listenTracker) {
+      clearInterval(this.listenTracker);
+      this.listenTracker = null;
+    }
   },
 });
 
