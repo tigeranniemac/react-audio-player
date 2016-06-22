@@ -83,7 +83,7 @@ const ReactAudioPlayer = React.createClass({
   /**
    * Set an interval to call props.onListen every props.listenInterval time period
    */
-  setListenTrack(currentTime) {
+  setListenTrack() {
     if (!this.listenTracker) {
       const listenInterval = this.props.listenInterval || DEFAULT_LISTEN_INTERVAL;
       this.listenTracker = setInterval(() => {
@@ -96,7 +96,10 @@ const ReactAudioPlayer = React.createClass({
    * Clear the onListen interval
    */
   clearListenTrack() {
-    clearInterval(this.listenTracker);
+    if (this.listenTracker) {
+      clearInterval(this.listenTracker);
+      this.listenTracker = null;
+    }
   },
 });
 
