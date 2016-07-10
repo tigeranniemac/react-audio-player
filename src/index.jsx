@@ -87,7 +87,7 @@ const ReactAudioPlayer = React.createClass({
     if (!this.listenTracker) {
       const listenInterval = this.props.listenInterval || DEFAULT_LISTEN_INTERVAL;
       this.listenTracker = setInterval(() => {
-        this.props.onListen(this.refs.audio.currentTime);
+        this.props.onListen && this.props.onListen(this.refs.audio.currentTime);
       }, listenInterval);
     }
   },

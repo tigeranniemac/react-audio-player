@@ -9,7 +9,7 @@ This is a light React wrapper around the HTML5 audio tag.  It provides the abili
 
     <ReactAudioPlayer
       src="my_audio_file.ogg"
-      autoplay="true"
+      autoPlay="true"
     />
 
 ## API
