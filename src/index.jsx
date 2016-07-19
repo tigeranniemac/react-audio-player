@@ -35,7 +35,7 @@ const ReactAudioPlayer = React.createClass({
     // When the file has finished playing to the end
     audio.addEventListener('ended', (e) => {
       this.clearListenTrack();
-      this.props.onEnd && this.props.onEnd(e);
+      this.props.onEnded && this.props.onEnded(e);
     });
 
     // When the user pauses playback
