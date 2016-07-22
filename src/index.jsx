@@ -2,7 +2,7 @@ import React from 'react';
 
 const DEFAULT_LISTEN_INTERVAL = 10000;
 
-const ReactAudioPlayer = React.createClass({
+class ReactAudioPlayer extends React.Component {
   componentDidMount() {
     const audio = this.audioEl;
 
@@ -49,7 +49,7 @@ const ReactAudioPlayer = React.createClass({
       this.clearListenTrack();
       this.props.onSeeked && this.props.onSeeked(e);
     });
-  },
+  }
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedPlayerEvent) {
@@ -58,7 +58,29 @@ const ReactAudioPlayer = React.createClass({
       audio.currentTime = nextProps.selectedPlayerEvent.playTime;
       audio.play();
     }
-  },
+  }
+
+  /**
+   * Set an interval to call props.onListen every props.listenInterval time period
+   */
+  setListenTrack() {
+    if (!this.listenTracker) {
+      const listenInterval = this.props.listenInterval || DEFAULT_LISTEN_INTERVAL;
+      this.listenTracker = setInterval(() => {
+        this.props.onListen && this.props.onListen(this.audioEl.currentTime);
+      }, listenInterval);
+    }
+  }
+
+  /**
+   * Clear the onListen interval
+   */
+  clearListenTrack() {
+    if (this.listenTracker) {
+      clearInterval(this.listenTracker);
+      this.listenTracker = null;
+    }
+  }
 
   render() {
     const incompatibilityMessage = this.props.children || (
@@ -78,29 +100,24 @@ const ReactAudioPlayer = React.createClass({
         {incompatibilityMessage}
       </audio>
     );
-  },
+  }
+}
 
-  /**
-   * Set an interval to call props.onListen every props.listenInterval time period
-   */
-  setListenTrack() {
-    if (!this.listenTracker) {
-      const listenInterval = this.props.listenInterval || DEFAULT_LISTEN_INTERVAL;
-      this.listenTracker = setInterval(() => {
-        this.props.onListen && this.props.onListen(this.audioEl.currentTime);
-      }, listenInterval);
-    }
-  },
-
-  /**
-   * Clear the onListen interval
-   */
-  clearListenTrack() {
-    if (this.listenTracker) {
-      clearInterval(this.listenTracker);
-      this.listenTracker = null;
-    }
-  },
-});
+ReactAudioPlayer.propTypes = {
+  autoPlay: React.PropTypes.string,
+  children: React.PropTypes.array,
+  listenInterval: React.PropTypes.number,
+  onAbort: React.PropTypes.func,
+  onCanPlay: React.PropTypes.func,
+  onCanPlayThrough: React.PropTypes.func,
+  onEnded: React.PropTypes.func,
+  onError: React.PropTypes.func,
+  onListen: React.PropTypes.func,
+  onPause: React.PropTypes.func,
+  onPlay: React.PropTypes.func,
+  onSeeked: React.PropTypes.func,
+  preload: React.PropTypes.string,
+  src: React.PropTypes.string,
+};
 
 export default ReactAudioPlayer;

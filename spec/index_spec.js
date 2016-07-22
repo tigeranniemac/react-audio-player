@@ -25,7 +25,7 @@ describe('ReactAudioPlayer', function() {
       ReactTestUtils.renderIntoDocument(
         <ReactAudioPlayer
           src={song}
-          autoPlay={true}
+          autoPlay="true"
           onCanPlay={onCanPlay}
         />
       );
@@ -42,7 +42,7 @@ describe('ReactAudioPlayer', function() {
       ReactTestUtils.renderIntoDocument(
         <ReactAudioPlayer
           src={song}
-          autoPlay={true}
+          autoPlay="true"
           onCanPlayThrough={onCanPlayThrough}
         />
       );
