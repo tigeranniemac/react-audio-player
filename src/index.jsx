@@ -4,7 +4,7 @@ const DEFAULT_LISTEN_INTERVAL = 10000;
 
 const ReactAudioPlayer = React.createClass({
   componentDidMount() {
-    const audio = this.refs.audio;
+    const audio = this.audioEl;
 
     audio.addEventListener('error', (e) => {
       this.props.onError && this.props.onError(e);
@@ -53,7 +53,7 @@ const ReactAudioPlayer = React.createClass({
 
   componentWillReceiveProps(nextProps) {
     if (nextProps.selectedPlayerEvent) {
-      const audio = this.refs.audio;
+      const audio = this.audioEl;
 
       audio.currentTime = nextProps.selectedPlayerEvent.playTime;
       audio.play();
@@ -72,7 +72,7 @@ const ReactAudioPlayer = React.createClass({
         autoPlay={this.props.autoPlay}
         preload={this.props.preload}
         controls
-        ref="audio"
+        ref={(ref) => this.audioEl = ref}
         onPlay={this.onPlay}
       >
         {incompatibilityMessage}
@@ -87,7 +87,7 @@ const ReactAudioPlayer = React.createClass({
     if (!this.listenTracker) {
       const listenInterval = this.props.listenInterval || DEFAULT_LISTEN_INTERVAL;
       this.listenTracker = setInterval(() => {
-        this.props.onListen && this.props.onListen(this.refs.audio.currentTime);
+        this.props.onListen && this.props.onListen(this.audioEl.currentTime);
       }, listenInterval);
     }
   },
