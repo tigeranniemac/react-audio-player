@@ -29,7 +29,7 @@ Called when playback has finished to the end of the file. Passed the event.
 #### onError {Function}
 Called when the audio tag encounters an error. Passed the event.
 
-#### onListened {Function}
+#### onListen {Function}
 Called every `listenInterval` milliseconds during playback.  Passed the event.
 
 #### onPause {Function}
