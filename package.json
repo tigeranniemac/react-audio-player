@@ -1,6 +1,6 @@
 {
   "name": "react-audio-player",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "description": "A simple React wrapper for the <audio> tag",
   "main": "dist/bundle.js",
   "scripts": {
