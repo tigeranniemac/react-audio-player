@@ -90,7 +90,7 @@ class ReactAudioPlayer extends React.Component {
     return (
       <audio
         className="react-audio-player"
-        src={this.props.src}
+        src={this.props.src || ''}
         autoPlay={this.props.autoPlay}
         preload={this.props.preload}
         controls
