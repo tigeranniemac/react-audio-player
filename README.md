@@ -9,7 +9,7 @@ This is a light React wrapper around the HTML5 audio tag.  It provides the abili
 
     <ReactAudioPlayer
       src="my_audio_file.ogg"
-      autoPlay="true"
+      autoPlay
     />
 
 ## API
@@ -43,3 +43,16 @@ Called when the user drags the time indicator to a new time. Passed the event.
 
 #### preload {String}
 Indicates whether the browser should preload the media. See the [audio tag documentation](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/audio) for details.
+
+## Advanced Usage
+
+### Access to the audio element
+You can get direct access to the underlying audio element.  First get a ref to ReactAudioPlayer:
+
+    <ReactAudioPlayer
+      ref={c => { this.rap = c }
+    />
+
+Then you can access the audio element like this:
+
+    this.rap.audioEl
