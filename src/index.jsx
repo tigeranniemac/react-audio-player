@@ -87,13 +87,16 @@ class ReactAudioPlayer extends React.Component {
       <p>Your browser does not support the <code>audio</code> element.</p>
     );
 
+    // Set controls to be true by default unless explicity stated otherwise
+    const controls = this.props.controls === false ? false : true;
+
     return (
       <audio
         className="react-audio-player"
         src={this.props.src || ''}
         autoPlay={this.props.autoPlay}
         preload={this.props.preload}
-        controls
+        controls={controls}
         ref={(ref) => this.audioEl = ref}
         onPlay={this.onPlay}
       >
@@ -118,6 +121,7 @@ ReactAudioPlayer.propTypes = {
   onSeeked: React.PropTypes.func,
   preload: React.PropTypes.string,
   src: React.PropTypes.string,
+  controls: React.PropTypes.bool
 };
 
 export default ReactAudioPlayer;
